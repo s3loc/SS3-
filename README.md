@@ -135,6 +135,7 @@ MIT License. Ayrıntılar için `LICENSE` dosyasına bakın.
 Bu proje yalnızca izinli güvenlik testleri, kurumsal güvenlik değerlendirmeleri ve eğitim amaçlıdır. Yazarlar, yetkisiz kullanımdan doğabilecek **her türlü** zarardan sorumlu değildir.  
 
 
+![giphy](https://github.com/user-attachments/assets/8bfd598f-d763-44dc-9517-6ab5b3179582)
 
-![giphy](https://github.com/user-attachments/assets/98bc1a30-4cbe-4853-a63a-ec0681a52e8e)
+
 
