@@ -133,7 +133,7 @@ MIT License. Ayrıntılar için `LICENSE` dosyasına bakın.
 ### Sorumluluk Reddi
 
 Bu proje yalnızca izinli güvenlik testleri, kurumsal güvenlik değerlendirmeleri ve eğitim amaçlıdır. Yazarlar, yetkisiz kullanımdan doğabilecek **her türlü** zarardan sorumlu değildir.  
-```
+
 
 
 ![giphy](https://github.com/user-attachments/assets/98bc1a30-4cbe-4853-a63a-ec0681a52e8e)
