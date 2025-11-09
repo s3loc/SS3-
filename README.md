@@ -6,7 +6,11 @@
 
 Modüler OSINT ve güvenlik istihbaratı çerçevesi. Pasif/aktif keşif, veri arşivleme, ağ ilişkileri analizi, ölçülebilir risk skoru ve **eyleme dönük** öneriler üretir.
 
-> ⚠️ Bu yazılım yalnızca **izinli** güvenlik testleri ve eğitim amaçlıdır. Yetkisiz kullanım yasadışıdır; tüm sorumluluk kullanıcıya aittir.
+> ⚠️ yalnızca eğitim, araştırma ve yetkilendirilmiş sızma testleri için sağlanır. Bu yazılımın izinsiz sistemlere, ağlara veya veriye karşı kullanımı kesinlikle yasaktır ve hukuka aykırı olabilir. Kullanımınızdan doğan tüm risk ve sorumluluk size aittir.
+
+YAZILIM “OLDUĞU GİBİ” SUNULUR; AÇIK VEYA ZIMNİ HER TÜRLÜ GARANTİ REDDEDİLİR. [YAZAR/KURUM_ADI] hiçbir koşulda doğrudan, dolaylı, arızi, özel veya sonuçsal zararlardan sorumlu tutulamaz.
+
+Bu proje MIT Lisansı ile lisanslanmıştır; lisans koşulları ile bu sorumluluk reddi birlikte uygulanır. Ayrıntılı sürüm için `LEGAL_DISCLAIMER.md` dosyasına bakınız.
 
 ---
 
