@@ -75,6 +75,8 @@ python SS3_Main.py
 # İstendiğinde hedefi gir: example.com
 
 ```
+<img width="1246" height="844" alt="resim" src="https://github.com/user-attachments/assets/a3ed228f-20cd-4551-9516-e29d8a919fba" />
+
 
 ### 2) Dashboard (API + HTML rapor)
 Geliştirme modunda çalıştır:
