@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SS3 Intelligence Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body { 
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #e0e0e0; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(25, 25, 35, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+    }
+    
+    h1 { 
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+      margin-bottom: 10px;
+      font-size: 2.5em;
+    }
+    
+    .subtitle {
+      color: #888;
+      margin-bottom: 30px;
+      font-size: 1.1em;
+    }
+    
+    .input-group {
+      margin: 30px 0;
+    }
+    
+    input { 
+      padding: 15px; 
+      width: 100%;
+      max-width: 500px;
+      border: 1px solid #00ffff;
+      background: #111; 
+      color: #00ffff;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 15px #00ffff;
+      border-color: #00ffcc;
+    }
+    
+    input::placeholder {
+      color: #666;
+    }
+    
+    .button-group {
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    button { 
+      padding: 12px 25px; 
+      background: #00ffcc; 
+      color: #0a0a0a; 
+      border: none; 
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s;
+      min-width: 150px;
+    }
+    
+    button:hover {
+      background: #00ffff;
+      box-shadow: 0 0 15px #00ffff;
+      transform: translateY(-2px);
+    }
+    
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    .secondary-btn {
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+    }
+    
+    .secondary-btn:hover {
+      background: #00ffcc;
+      color: #0a0a0a;
+    }
+    
+    .output-container {
+      position: relative;
+      margin: 20px 0;
+    }
+    
+    pre { 
+      text-align: left; 
+      margin: 20px auto; 
+      background: #111; 
+      padding: 20px; 
+      border-radius: 8px;
+      border: 1px solid #00ffff;
+      min-height: 200px;
+      max-height: 500px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    
+    .loading {
+      display: none;
+      color: #00ffcc;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(0, 255, 204, 0.1);
+      border-radius: 8px;
+      border: 1px solid #00ffcc;
+    }
+    
+    .spinner {
+      border: 3px solid #333;
+      border-top: 3px solid #00ffcc;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .status-bar {
+      margin: 15px 0;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #00ffcc;
+      text-align: left;
+    }
+    
+    .reports-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    
+    .reports-list {
+      text-align: left;
+      margin: 15px 0;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #111;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    
+    .report-item {
+      padding: 10px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .report-item:last-child {
+      border-bottom: none;
+    }
+    
+    .report-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .action-btn {
+      padding: 5px 10px;
+      font-size: 12px;
+      min-width: auto;
+      background: #333;
+      color: #00ffcc;
+    }
+    
+    .action-btn:hover {
+      background: #00ffcc;
+      color: #0a0a0a;
+    }
+    
+    .success { color: #00ff00; border-left-color: #00ff00; }
+    .error { color: #ff4444; border-left-color: #ff4444; }
+    .warning { color: #ffff00; border-left-color: #ffff00; }
+    .info { color: #00ffff; border-left-color: #00ffff; }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+      
+      .button-group {
+        flex-direction: column;
+      }
+      
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛡️ SS3 Intelligence Dashboard</h1>
+    <div class="subtitle">Güvenlik Analiz ve İstihbarat Platformu</div>
+    
+    <div class="input-group">
+      <input type="text" id="target" placeholder="Hedef domain veya IP girin... (örnek: example.com veya 192.168.1.1)" autocomplete="off">
+    </div>
+
+    <div class="button-group">
+      <button onclick="runSS3()" id="analyzeBtn">Analiz Başlat</button>
+      <button onclick="loadReports()" id="reportsBtn" class="secondary-btn">Raporları Yükle</button>
+      <button onclick="clearOutput()" id="clearBtn" class="secondary-btn">Ekranı Temizle</button>
+    </div>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <span>Analiz yapılıyor, lütfen bekleyin... Bu işlem birkaç dakika sürebilir.</span>
+    </div>
+
+    <div class="status-bar info" id="status">
+      Sistem hazır. Analiz başlatmak için hedef girin.
+    </div>
+
+    <div class="reports-section" id="reportsSection" style="display: none;">
+      <h3>📋 Mevcut Raporlar</h3>
+      <div class="reports-list" id="reportsList">
+        <!-- Raporlar buraya yüklenecek -->
+      </div>
+    </div>
+
+    <div class="output-container">
+      <pre id="output">SS3 Intelligence Dashboard'a hoş geldiniz!
+
+🎯 Özellikler:
+• Hedef domain/IP analizi
+• Kapsamlı güvenlik taraması
+• Otomatik rapor oluşturma
+• Detaylı risk değerlendirmesi
+
+📍 Kullanım:
+1. Yukarıdaki alana hedef domain veya IP adresini girin
+2. "Analiz Başlat" butonuna tıklayın
+3. Sonuçları bekleyin ve raporları inceleyin
+
+⚠️  Not: Analiz işlemi hedefin karmaşıklığına göre birkaç dakika sürebilir.</pre>
+    </div>
+  </div>
+
+  <script>
+    let currentReports = [];
+
+    async function runSS3() {
+      const target = document.getElementById('target').value.trim();
+      const output = document.getElementById('output');
+      const loading = document.getElementById('loading');
+      const analyzeBtn = document.getElementById('analyzeBtn');
+      const status = document.getElementById('status');
+
+      // Validasyon
+      if (!target) {
+        showStatus('❌ Hata: Lütfen bir hedef domain veya IP adresi girin.', 'error');
+        return;
+      }
+
+      // Domain/IP validasyonu
+      if (!isValidTarget(target)) {
+        showStatus('❌ Hata: Geçerli bir domain veya IP adresi girin.', 'error');
+        return;
+      }
+
+      // UI durumunu güncelle
+      analyzeBtn.disabled = true;
+      analyzeBtn.textContent = "Analiz Yapılıyor...";
+      loading.style.display = 'block';
+      showStatus(`Hedef: ${target} | Durum: Analiz başlatılıyor...`, 'info');
+      output.textContent = "Analiz başlatılıyor... Lütfen bekleyin.";
+
+      try {
+        const response = await fetch('/run', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ target: target })
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || `Sunucu hatası: ${response.status}`);
+        }
+
+        // Başarılı yanıt
+        showStatus(`Hedef: ${target} | Durum: Tamamlandı ✅`, 'success');
+        output.textContent = data.message || "Analiz başarıyla tamamlandı.";
+        
+        // Raporları otomatik yenile
+        await loadReports();
+
+      } catch (error) {
+        // Hata durumu
+        console.error('Hata:', error);
+        showStatus(`Hedef: ${target} | Durum: Hata ❌`, 'error');
+        output.textContent = `❌ İstek sırasında hata oluştu:\n${error.message}\n\n🔧 Sorun Giderme:\n• Sunucunun çalıştığından emin olun\n• İnternet bağlantınızı kontrol edin\n• Hedefin geçerli olduğundan emin olun`;
+      } finally {
+        // UI durumunu sıfırla
+        analyzeBtn.disabled = false;
+        analyzeBtn.textContent = "Analiz Başlat";
+        loading.style.display = 'none';
+      }
+    }
+
+    async function loadReports() {
+      const reportsSection = document.getElementById('reportsSection');
+      const reportsList = document.getElementById('reportsList');
+      const reportsBtn = document.getElementById('reportsBtn');
+
+      try {
+        reportsBtn.disabled = true;
+        reportsBtn.textContent = "Yükleniyor...";
+        
+        const response = await fetch('/reports');
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Raporlar yüklenemedi');
+        }
+
+        currentReports = data.reports || [];
+        
+        if (currentReports.length === 0) {
+          reportsList.innerHTML = '<div class="report-item">Henüz rapor bulunmuyor</div>';
+        } else {
+          reportsList.innerHTML = currentReports.map(report => `
+            <div class="report-item">
+              <div>
+                <strong>${report.filename}</strong><br>
+                <small>Oluşturulma: ${report.created_time}</small>
+              </div>
+              <div class="report-actions">
+                <button class="action-btn" onclick="viewReport('${report.filename}')">Görüntüle</button>
+                <button class="action-btn" onclick="downloadReport('${report.filename}')">İndir</button>
+              </div>
+            </div>
+          `).join('');
+        }
+        
+        reportsSection.style.display = 'block';
+        showStatus(`📊 ${currentReports.length} rapor yüklendi`, 'success');
+
+      } catch (error) {
+        console.error('Rapor yükleme hatası:', error);
+        showStatus(`❌ Raporlar yüklenemedi: ${error.message}`, 'error');
+        reportsList.innerHTML = '<div class="report-item">Raporlar yüklenirken hata oluştu</div>';
+        reportsSection.style.display = 'block';
+      } finally {
+        reportsBtn.disabled = false;
+        reportsBtn.textContent = "Raporları Yükle";
+      }
+    }
+
+    function viewReport(filename) {
+      window.open(`/view/${filename}`, '_blank');
+    }
+
+    function downloadReport(filename) {
+      window.location.href = `/download/${filename}`;
+    }
+
+    function clearOutput() {
+      document.getElementById('output').textContent = '';
+      showStatus('Ekran temizlendi. Yeni analiz başlatabilirsiniz.', 'info');
+    }
+
+    function showStatus(message, type = 'info') {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.className = `status-bar ${type}`;
+    }
+
+    function isValidTarget(target) {
+      // Domain validasyonu
+      const domainRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/;
+      // IP validasyonu
+      const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+      
+      return domainRegex.test(target) || ipRegex.test(target);
+    }
+
+    // Enter tuşu ile analiz başlatma
+    document.getElementById('target').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        runSS3();
+      }
+    });
+
+    // Sayfa yüklendiğinde raporları otomatik yükle
+    window.addEventListener('load', function() {
+      document.getElementById('target').focus();
+      loadReports();
+    });
+
+    // Input değişikliklerinde validasyon
+    document.getElementById('target').addEventListener('input', function(e) {
+      const target = e.target.value.trim();
+      if (target && !isValidTarget(target)) {
+        e.target.style.borderColor = '#ff4444';
+      } else {
+        e.target.style.borderColor = target ? '#00ff00' : '#00ffff';
+      }
+    });
+  </script>
+</body>
+</html>
