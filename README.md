@@ -1,34 +1,48 @@
-# SS3 — Security & OSINT Intelligence Framework
----
+İşte daha düzenli, profesyonel ve kullanıcı dostu bir hale getirilmiş README.md:
 
-<img width="1024" height="1024" alt="SS3" src="https://github.com/user-attachments/assets/e886dfaf-8b2a-4830-903e-f1c1bc571f5f" />
+```markdown
+# 🔍 SS3 — Security & OSINT Intelligence Framework
 
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Flask](https://img.shields.io/badge/Flask-API-green)](https://flask.palletsprojects.com/)
 
-
-
-Modüler OSINT ve güvenlik istihbaratı çerçevesi. Pasif/aktif keşif, veri arşivleme, ağ ilişkileri analizi, ölçülebilir risk skoru ve **eyleme dönük** öneriler üretir.
-
-> ⚠️ yalnızca eğitim, araştırma ve yetkilendirilmiş sızma testleri için sağlanır. Bu yazılımın izinsiz sistemlere, ağlara veya veriye karşı kullanımı kesinlikle yasaktır ve hukuka aykırı olabilir. Kullanımınızdan doğan tüm risk ve sorumluluk size aittir.
-
-> YAZILIM “OLDUĞU GİBİ” SUNULUR; AÇIK VEYA ZIMNİ HER TÜRLÜ GARANTİ REDDEDİLİR. [YAZAR/KURUM_ADI] hiçbir koşulda doğrudan, dolaylı, arızi, özel veya sonuçsal zararlardan sorumlu tutulamaz.
-
-> Bu proje MIT Lisansı ile lisanslanmıştır; lisans koşulları ile bu sorumluluk reddi birlikte uygulanır. Ayrıntılı sürüm için `LEGAL_DISCLAIMER.md` dosyasına bakınız.
+Modüler OSINT ve güvenlik istihbaratı çerçevesi. Pasif/aktif keşif, veri arşivleme, ağ ilişkileri analizi, ölçülebilir risk skoru ve **eyleme dönüştürülebilir** güvenlik önerileri sunar.
 
 ---
 
-## Özellikler
+## ⚠️ Sorumluluk Reddi ve Uyarı
 
-- **Sentinel Node:** WHOIS, DNS, alt alanlar, HTTP güvenlik başlıkları, SSL durumu; ek olarak **asenkron port tarama + banner grabbing + CVE eşleştirme**.
-- **Council Mesh:** NetworkX tabanlı ilişki grafı, merkezilik/yoğunluk analizleri, port ve teknoloji düğümleriyle zengin bağlam.
-- **Archivum Core:** Sıkıştırma + şifreleme (Fernet), çoklu hash (MD5/SHA-1/SHA-256/SHA-512/BLAKE2b) ve disk arşivleme.
-- **Ledger:** RSA imzalı, “quantum-hardened” hash zinciri ve SQLite kalıcılık; bütünlük ve doğrulama kayıtları.
-- **Grand Node:** Executive summary, risk skoru/level, bulgu sayıları ve **otomatik düzeltme önerileri** (WAF, port kısıtlama, DMARC, SSL, header vb.).
-- **Dashboard:** Flask tabanlı API + HTML rapor üretimi; “Önerilen Güvenlik Önlemleri” bölümünü görsel kartlar halinde sunar.
+Bu yazılım **yalnızca** aşağıdaki amaçlarla kullanılabilir:
+- Eğitim ve akademik araştırmalar
+- Yetkilendirilmiş sızma testleri
+- Kurumsal güvenlik değerlendirmeleri
 
-## Mimari
+**Yasaklı Kullanım:**  
+İzinsiz sistemlere, ağlara veya verilere karşı kullanımı kesinlikle yasaktır ve yasal ihlal oluşturabilir. Kullanıcı, kendi eylemlerinden doğacak tüm risk ve sorumlulukları kabul eder.
+
+**Yazılım "OLDUĞU GİBİ" sunulmaktadır.** Açık veya zımni hiçbir garanti verilmemektedir. Geliştiriciler, doğrudan veya dolaylı zararlardan sorumlu tutulamaz.
+
+Detaylı hükümler için [`LEGAL_DISCLAIMER.md`](LEGAL_DISCLAIMER.md) dosyasına bakınız.
+
+---
+
+## ✨ Temel Özellikler
+
+| Modül | Açıklama |
+|-------|----------|
+| **🛡️ Sentinel Node** | WHOIS, DNS, alt alan tarama, HTTP güvenlik başlıkları, SSL durumu. **Asenkron port tarama + banner grabbing + CVE eşleştirme** |
+| **🕸️ Council Mesh** | NetworkX tabanlı ilişki grafları, merkezilik/yoğunluk analizleri, port ve teknoloji düğümleri |
+| **💾 Archivum Core** | Sıkıştırma + şifreleme (Fernet), çoklu hash (MD5/SHA-1/SHA-256/SHA-512/BLAKE2b), disk arşivleme |
+| **📒 Ledger** | RSA imzalı "quantum-hardened" hash zinciri, SQLite kalıcılık, bütünlük ve doğrulama kayıtları |
+| **🎯 Grand Node** | Executive summary, risk skoru/seviyesi, bulgu sayıları ve **otomatik düzeltme önerileri** |
+| **📊 Dashboard** | Flask tabanlı API + HTML rapor üretimi, görsel kartlarla güvenlik önerileri |
+
+---
+
+## 🏗️ Mimari Yapı
 
 ```
-
 SS3_Main.py
 ├─ Sentinel_Node.py        # OSINT + aktif tarama/CVE
 ├─ Archivum_Core.py        # Arşivleme / şifreleme / hash
@@ -36,111 +50,154 @@ SS3_Main.py
 ├─ Ledger.py               # İmza, zincir ve veritabanı
 ├─ Grand_Node.py           # Özet, skor, öneriler
 └─ SS3_Dashboard.py        # Flask API + HTML rapor
-
 ```
-
-## Kurulum
-
-```
-
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -U pip wheel
-
-# Çekirdek gereksinimler (örnek)
-
-pip install flask requests dnspython python-whois ipwhois beautifulsoup4 
-aiohttp networkx plotly pandas cryptography
-
-# Opsiyonel: shodan (API anahtarı varsa)
-
-pip install shodan
-
-```
-
-İsteğe bağlı ortam değişkenleri:
-```
-
-export SHODAN_API_KEY="..."   # varsa Sentinel kullanır
-
-```
-
-## Hızlı Başlangıç
-
-### 1) Komut satırından analiz
-```
-
-python SS3_Main.py
-
-# İstendiğinde hedefi gir: example.com
-
-```
-<img width="1246" height="844" alt="resim" src="https://github.com/user-attachments/assets/a3ed228f-20cd-4551-9516-e29d8a919fba" />
-
-
-### 2) Dashboard (API + HTML rapor)
-Geliştirme modunda çalıştır:
-```
-
-export FLASK_APP=SS3_Dashboard.py
-flask run --host 0.0.0.0 --port 5000
-
-```
-
-İstek:
-```
-
-POST /run
-Content-Type: application/json
-{"target": "example.com"}
-
-```
-
-Oluşan HTML rapor: `reports/SS3_Report_YYYYMMDD_HHMMSS_example.com.html`
-
-## Çıktılar
-
-- **Risk skoru:** 0.0–1.0 arası normalize değer.
-- **Özet:** kritik/yüksek/orta/düşük bulgu sayıları.
-- **Öneriler:** WAF etkinleştirme, port kısıtlama (22/445/3389), DMARC politikası, SSL yenileme, güvenlik başlıkları (CSP, HSTS, X-Frame-Options) vb.
-- **Aktif Tarama:** açık port listesi, servis/sürüm ve **potansiyel CVE’ler**.
-
-## Güvenlik ve Uyum
-
-- Aktif tarama sadece **izinli** hedeflerde çalıştırın.
-- Her analiz için denetim kaydı (audit) tutmanız önerilir (kullanıcı, zaman, hedef, modüller).
-- API anahtarlarını `.env` dosyasında saklayın; repoya dahil etmeyin.
-
-## Dağıtım (öneri)
-
-- Production: Gunicorn + Nginx (SSL) arkası:
-```
-
-gunicorn SS3_Dashboard:app -w 4 -b 0.0.0.0:8080
-
-```
-- Logs: `journalctl` veya dosya tabanlı log rotasyonu.
-
-## Katkı
-
-PR’lar memnuniyetle karşılanır. Lütfen yeni modüllerde:
-- Giriş doğrulaması ve zaman aşımı ekleyin.
-- Ağ trafiği üreten işlemlerde **kullanım uyarısı** gösterin.
-- Raporlama sözleşmesini (JSON alan adları) koruyun.
-
-## Lisans
-
-MIT License. Ayrıntılar için `LICENSE` dosyasına bakın.
 
 ---
 
-### Sorumluluk Reddi
+## 🚀 Kurulum
 
-Bu proje yalnızca izinli güvenlik testleri, kurumsal güvenlik değerlendirmeleri ve eğitim amaçlıdır. Yazarlar, yetkisiz kullanımdan doğabilecek **her türlü** zarardan sorumlu değildir.  
+### Temel Gereksinimler
+- Python 3.8+
+- pip (en son sürüm)
 
-![giphy](https://github.com/user-attachments/assets/1d9f104b-ca94-4d14-9ab6-e9d87b7a04ce)
+### Adım Adım Kurulum
+
+1. **Sanal ortam oluştur ve etkinleştir:**
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+```
+
+2. **Gereksinimleri yükle:**
+```bash
+pip install -U pip wheel
+pip install flask requests dnspython python-whois ipwhois beautifulsoup4 aiohttp networkx plotly pandas cryptography
+```
+
+3. **Opsiyonel: Shodan entegrasyonu (API anahtarı gerektirir):**
+```bash
+pip install shodan
+```
+
+### Ortam Değişkenleri
+```bash
+export SHODAN_API_KEY="your_api_key_here"  # Shodan entegrasyonu için
+export FLASK_ENV="development"             # Geliştirme modu
+```
+
+---
+
+## 🎮 Kullanım
+
+### 1. Komut Satırı Arayüzü
+```bash
+python SS3_Main.py
+# İstendiğinde hedef domain/IP girin: example.com
+```
+
+### 2. Web Dashboard
+```bash
+export FLASK_APP=SS3_Dashboard.py
+flask run --host 0.0.0.0 --port 5000
+```
+
+**API Kullanımı:**
+```bash
+curl -X POST http://localhost:5000/run \
+  -H "Content-Type: application/json" \
+  -d '{"target": "example.com"}'
+```
+
+**Çıktı:** `reports/SS3_Report_YYYYMMDD_HHMMSS_example.com.html`
+
+---
+
+## 📈 Çıktılar ve Raporlama
+
+### Risk Metrikleri
+- **Risk Skoru:** 0.0-1.0 arası normalize değer
+- **Bulgu Seviyeleri:** Kritik/Yüksek/Orta/Düşük sınıflandırması
+- **Özet Dashboard:** Görsel ve istatistiksel özet
+
+### Güvenlik Önerileri
+- WAF konfigürasyon önerileri
+- Port güvenliği (22/445/3389 kısıtlama)
+- DMARC/DKIM/SPF politikaları
+- SSL/TLS iyileştirmeleri
+- HTTP güvenlik başlıkları (CSP, HSTS, X-Frame-Options)
+
+### Aktif Tarama Sonuçları
+- Açık port listesi ve servis bilgileri
+- Banner bilgileri ve sürüm tespiti
+- Potansiyel CVE eşleştirmeleri
+
+---
+
+## 🔒 Güvenlik ve Uyum
+
+### Best Practices
+- Aktif taramaları yalnızca **yetkilendirilmiş** hedeflerde çalıştırın
+- Tüm analizler için denetim kaydı (audit log) tutun
+- API anahtarlarını `.env` dosyasında saklayın
+- Production ortamında SSL/TLS kullanın
+
+### Denetim Kaydı
+Her analiz için aşağıdaki bilgileri kaydedin:
+- Kullanıcı ve zaman damgası
+- Hedef domain/IP
+- Çalıştırılan modüller
+- Risk skoru ve bulgu özeti
+
+---
+
+## 🌐 Production Dağıtımı
+
+### Gunicorn + Nginx
+```bash
+gunicorn SS3_Dashboard:app -w 4 -b 0.0.0.0:8080
+```
+
+### Log Yönetimi
+```bash
+# Systemd servisi ile
+journalctl -u ss3-service
+
+# Dosya tabanlı log
+logrotate /etc/logrotate.d/ss3
+```
+
+---
+
+## 🤝 Katkıda Bulunma
+
+Katkılarınızı memnuniyetle karşılıyoruz! Yeni modül geliştirirken:
+
+- Giriş doğrulama ve zaman aşımı ekleyin
+- Ağ işlemlerinde **kullanım uyarısı** gösterin
+- Mevcut raporlama JSON formatını koruyun
+- Test coverage'i artırın
+
+### Katkı Süreci
+1. Fork edin ve feature branch oluşturun
+2. Değişikliklerinizi test edin
+3. PR açın ve değişiklikleri detaylandırın
+
+---
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [`LICENSE`](LICENSE) dosyasına bakınız.
+
+---
+
+## 🆘 Destek ve İletişim
+
+- **Hata Raporları:** GitHub Issues
+- **Güvenlik Açıkları:** Özel mesaj yoluyla
+- **Dokümantasyon:** [`docs/`](docs/) klasörü
+
+---
 
 
-
-
-
+```
+*"Bilgi güçtür, ancak sorumlulukla kullanıldığında değer kazanır."*
