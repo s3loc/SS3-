@@ -3,9 +3,8 @@
 ```markdown
 # 🔍 SS3 — Security & OSINT Intelligence Framework
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Flask](https://img.shields.io/badge/Flask-API-green)](https://flask.palletsprojects.com/)
+<img width="1024" height="1024" alt="SS3" src="https://github.com/user-attachments/assets/2372e816-66c7-41a5-a1ec-1689a361c397" />
+
 
 Modüler OSINT ve güvenlik istihbaratı çerçevesi. Pasif/aktif keşif, veri arşivleme, ağ ilişkileri analizi, ölçülebilir risk skoru ve **eyleme dönüştürülebilir** güvenlik önerileri sunar.
 
@@ -195,6 +194,9 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [`LICENSE`](LI
 - **Hata Raporları:** GitHub Issues
 - **Güvenlik Açıkları:** Özel mesaj yoluyla
 - **Dokümantasyon:** [`docs/`](docs/) klasörü
+
+  
+![giphy](https://github.com/user-attachments/assets/837ee5e3-be71-459d-9409-cc82db863dec)
 
 ---
 
