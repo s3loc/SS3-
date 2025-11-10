@@ -1,9 +1,9 @@
-İşte daha düzenli, profesyonel ve kullanıcı dostu bir hale getirilmiş README.md:
+<img width="1024" height="1024" alt="SS3" src="https://github.com/user-attachments/assets/2372e816-66c7-41a5-a1ec-1689a361c397" />
 
 ```markdown
 # 🔍 SS3 — Security & OSINT Intelligence Framework
 
-<img width="1024" height="1024" alt="SS3" src="https://github.com/user-attachments/assets/2372e816-66c7-41a5-a1ec-1689a361c397" />
+
 
 
 Modüler OSINT ve güvenlik istihbaratı çerçevesi. Pasif/aktif keşif, veri arşivleme, ağ ilişkileri analizi, ölçülebilir risk skoru ve **eyleme dönüştürülebilir** güvenlik önerileri sunar.
