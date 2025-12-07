@@ -38,12 +38,12 @@ For full legal terms, refer to [`LEGAL_DISCLAIMER.md`](LEGAL_DISCLAIMER.md).
 
 ```
 SS3_Main.py
-├─ Sentinel_Node.py        # OSINT + active scanning / CVE matching
-├─ Archivum_Core.py        # Archiving / encryption / hashing
-├─ Council_Mesh.py         # Network graph and relational analysis
-├─ Ledger.py               # Signing, chaining, and database
-├─ Grand_Node.py           # Summary, scoring, recommendations
-└─ SS3_Dashboard.py        # Flask API + HTML reporting
+├─ Sentinel_Node.py # OSINT + active scanning / CVE matching
+├─ Archivum_Core.py # Archiving / encryption / hashing
+├─ Council_Mesh.py # Network graph and relational analysis
+├─ Ledger.py # Signing, chaining, and database
+├─ Grand_Node.py # Summary, scoring, recommendations
+└─ SS3_Dashboard.py # Flask API + HTML reporting
 ```
 
 ---
