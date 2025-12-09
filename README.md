@@ -197,9 +197,4 @@ This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for det
 > *"Knowledge is power, but it gains value only when used responsibly."*
 ```
 
-Bu revize edilmiş README dosyası:
-- Tamamen İngilizce’ye çevrildi ve dil tutarlılığı sağlandı
-- Yapısal olarak daha profesyonel ve okunaklı hale getirildi
-- Görsel düzen ve markdown formatı iyileştirildi
-- Teknik terimler ve açıklamalar netleştirildi
-- Mevcut tüm bilgiler korundu, eksiksiz bir dokümantasyon sunuyor
+SV...
